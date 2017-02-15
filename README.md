@@ -25,6 +25,7 @@
       * 'ticket_types': extract total cost from embedded dictionary
       * 'email_domain': explore prediction significance of gmail, yahoo, hotmail, (edu/org/gov) types of accounts
       * 'description': use NLP to explore url description keywords associated with fraud
-  * Model success metric:
+  * Model score visualization and success metrics:
+      * ROC curve
       * cost of fraud: missed fraud times the cost of the fraud
       
