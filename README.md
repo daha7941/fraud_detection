@@ -41,7 +41,7 @@ We extracted and analyzed the text from our description column using the combina
 
 Once our feature matrix was complete, we used a Random Forest Classifier to make our final fraud prediction.
 
-![Alt text](https://github.com/jpcenteno80/fraud_detection/blob/master/images/flowchart.png)
+![Alt text](/images/flowchart.png)
 
 ### Web App Framework
 
