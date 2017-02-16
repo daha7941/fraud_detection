@@ -42,4 +42,5 @@
 We extracted and analyzed the text from our description column using the combination of a Term-frequency Inverse-document-frequency model and a Gaussian Naive Bayes model.  We generated fraud or not predictions based on this model, then added those predictions as a column to the rest of our feature matrix.
 
 Once our feature matrix was complete, we used a Random Forest Classifier to make our final fraud prediction.
+
 ![Alt text](https://github.com/jpcenteno80/fraud_detection/blob/master/images/flowchart.png)
