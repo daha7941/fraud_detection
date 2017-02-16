@@ -32,3 +32,4 @@
       * ROC curve
       * cost of fraud: missed fraud times the cost of the fraud
       
+![Alt text](/relative/path/to/flowchart.png?raw=true "Optional Title")
