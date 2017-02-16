@@ -25,7 +25,8 @@ def get_prediction(data_point, thresholds=[.33,.67]):
         risk = 'low'
     else:
         risk = 'moderate'
-    return 'Fraud risk is {} -- {}%  chance of fraud'.format(risk, proba*100.)
+    #return 'Fraud risk is {} -- {}%  chance of fraud'.format(risk, proba*100.)
+    return risk, proba
 
 
 

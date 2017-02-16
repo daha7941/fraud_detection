@@ -58,7 +58,7 @@ def authors():
 # REST operation to add an event to score 
 # score
 @app.route('/score', methods=['POST'])
-def check():
+def score():
     global TIMESTAMP, DATA, fraud_events, total_events, db
     total_events += 1
     #dp = json.dumps(request.json, sort_keys=True, indent=4, separators=(',', ': '))
@@ -66,14 +66,18 @@ def check():
     #dp = request.get_json()
     print "Received event ",dp['name'] 
     ###
-    ### Insert code here to get risk from model
+    ### Risk from model
     ###
-    temp = dp.copy()
     risk = 'low'
-    #risk, prob = get_prediction(temp)
-    #print risk, prob
-    print get_prediction(temp)
+    prob = 0
+    # Score the risk of the event
+    # Use copy of the data as function changes data 
+    #
+    temp = dp.copy()
+    risk, prob = get_prediction(temp)
+    print 'Fraud risk is {} -- {}%  chance of fraud'.format(risk, prob*100.) 
     dp['risk'] = risk
+    dp['prob_fraud'] = prob
     if (dp['risk'] != 'low'):
         fraud_events += 1
     db.event.insert_one(dp)        
@@ -83,7 +87,7 @@ def check():
 
 # Score function 
 # -- called after data point put into DATA
-def score():
+def xscore():
     line1 = "Number of data points: {0}".format(len(DATA))
     if DATA and TIMESTAMP:
         dt = datetime.fromtimestamp(TIMESTAMP[-1])
