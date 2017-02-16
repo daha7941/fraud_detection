@@ -32,4 +32,6 @@
       * ROC curve
       * cost of fraud: missed fraud times the cost of the fraud
       
+### Model Framework
+      
 ![Alt text](https://github.com/jpcenteno80/fraud_detection/blob/master/images/flowchart.png)
