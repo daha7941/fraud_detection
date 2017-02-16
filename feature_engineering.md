@@ -8,6 +8,7 @@ This page discusses our feature engineering process
 * Potential cost
 * Time to event
 * Email domain
+* NLP on description text
 
 
 ### Label
