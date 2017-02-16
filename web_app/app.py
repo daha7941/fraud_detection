@@ -9,7 +9,7 @@ import socket
 import requests
 import time
 import json 
-
+from prediction_pipe import get_prediction
 
 ### Web Site
 # home page
@@ -34,7 +34,7 @@ def register():
 #
 @app.route('/monitor', methods=['GET', 'POST'])
 def monitor():
-    global DATA, fraud_events, total_events 
+    global DATA, fraud_events, total_events, db
     if request.method == 'POST':
         body = ["Monitor - Reset stats"]
         DATA = []
@@ -59,7 +59,7 @@ def authors():
 # score
 @app.route('/score', methods=['POST'])
 def check():
-    global TIMESTAMP, DATA, fraud_events, total_events 
+    global TIMESTAMP, DATA, fraud_events, total_events, db
     total_events += 1
     #dp = json.dumps(request.json, sort_keys=True, indent=4, separators=(',', ': '))
     dp = request.get_json(force=True)
@@ -68,7 +68,11 @@ def check():
     ###
     ### Insert code here to get risk from model
     ###
-    dp['risk'] = "low"
+    temp = dp.copy()
+    #risk, prob = get_prediction(temp)
+    #print risk, prob
+    print get_prediction(temp)
+    dp['risk'] = risk
     if (dp['risk'] != 'low'):
         fraud_events += 1
     db.event.insert_one(dp)        
