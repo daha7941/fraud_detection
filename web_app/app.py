@@ -17,16 +17,17 @@ from prediction_pipe import get_prediction
 def index():
     return render_template('index.html')
 
-# register
-# Opens up a form to input 
+# Summary
+# Creates and displays a summary graph
 #
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/summary', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         body = ["Register"]
         return render_template('body.html', body = body)
     else:
-        body = ["Register form"]
+
+        body = ["Summary coming later"]
         return render_template('body.html', body = body)
 
 # monitor
@@ -42,12 +43,17 @@ def monitor():
         total_events = 0
         return render_template('body.html', body = body)
     else:
-        dp = DATA[-1]
-        body = ["Fraud Events = {0}\nTotal Events={1}".format(fraud_events, total_events)]
-        body.append(" ")
-        body.append("Current Event => '{0}'".format( dp['name']))
-        body.append("Current Event Fraud Risk => '{0}'".format(dp['risk']))
-        return render_template('body.html', body = body)
+        if len(DATA):
+            dp = DATA[-1]
+            body = ["Events with moderate or high risk of fraud = {0}".format(fraud_events)]
+            body.append("Total events = {0}".format(total_events))
+            body.append(" ")
+            body.append("Current Event => '{0}'".format( dp['name']))
+            body.append("Current Event Fraud Risk => '{0}'".format(dp['risk']))
+            return render_template('body.html', body = body)
+        else:
+            body = ['Starting ...']
+            return render_template('body.html', body = body)
 
 @app.route('/authors')
 def authors():
