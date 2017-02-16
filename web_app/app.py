@@ -69,6 +69,7 @@ def check():
     ### Insert code here to get risk from model
     ###
     temp = dp.copy()
+    risk = 'low'
     #risk, prob = get_prediction(temp)
     #print risk, prob
     print get_prediction(temp)
